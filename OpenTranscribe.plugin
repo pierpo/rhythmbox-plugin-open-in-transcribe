@@ -1,0 +1,10 @@
+[Plugin]
+Loader=python3
+Module=OpenTranscribe
+IAge=2
+Depends=rb
+Name=Open in Transcribe
+Description=Adds an option to open the selected track in Transcribe
+Authors=Pierre Poupin <pierpow@gmail.com>
+Copyright=Copyright © 2019 Pierre Poupin
+Website=https://github.com/pierpo
