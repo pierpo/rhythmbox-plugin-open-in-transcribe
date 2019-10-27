@@ -27,6 +27,7 @@ import os
 import subprocess
 import urllib
 
+
 class OpenInTranscribe(GObject.Object, Peas.Activatable):
 
     """Adds an option to open the selected song in Transcribe to
@@ -58,8 +59,7 @@ class OpenInTranscribe(GObject.Object, Peas.Activatable):
                 uri = urllib.parse.unquote(uri)
                 dirpath = uri
                 dirpath = '/' if not dirpath else dirpath[5:]
-                # subprocess.check_call(['/home/pierpo/transcribe/transcribe', dirpath])
-                subprocess.check_call(['transcribe', dirpath])
+                subprocess.Popen(['transcribe', dirpath])
         except:
             logging.exception('Could not open folder')
 
