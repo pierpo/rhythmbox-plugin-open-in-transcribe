@@ -1,6 +1,6 @@
 [Plugin]
 Loader=python3
-Module=OpenTranscribe
+Module=OpenInTranscribe
 IAge=2
 Depends=rb
 Name=Open in Transcribe

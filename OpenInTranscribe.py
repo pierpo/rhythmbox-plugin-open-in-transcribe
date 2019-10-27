@@ -1,6 +1,6 @@
 # -*- Mode: python; coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-#    OpenTranscribe.py
+#    OpenInTranscribe.py
 #
 #    Adds an option to open the selected track in Transcribe
 #    Copyright (C) 2012-2016 Donagh Horgan <donagh.horgan@gmail.com>
@@ -27,7 +27,7 @@ import os
 import subprocess
 import urllib
 
-class OpenTranscribe(GObject.Object, Peas.Activatable):
+class OpenInTranscribe(GObject.Object, Peas.Activatable):
 
     """Adds an option to open the selected song in Transcribe to
     the right click context menu."""
@@ -41,7 +41,7 @@ class OpenTranscribe(GObject.Object, Peas.Activatable):
                   'queue-popup']
 
     def __init__(self):
-        super(OpenTranscribe, self).__init__()
+        super(OpenInTranscribe, self).__init__()
         self._app = Gio.Application.get_default()
 
     def open_folder(self, *args):
@@ -67,23 +67,23 @@ class OpenTranscribe(GObject.Object, Peas.Activatable):
         """Activate the plugin."""
         logging.debug('Activating plugin...')
 
-        action = Gio.SimpleAction(name=OpenTranscribe._action)
+        action = Gio.SimpleAction(name=OpenInTranscribe._action)
         action.connect('activate', self.open_folder)
         self._app.add_action(action)
 
         item = Gio.MenuItem()
         item.set_label('Open in Transcribe')
-        item.set_detailed_action('app.%s' % OpenTranscribe._action)
+        item.set_detailed_action('app.%s' % OpenInTranscribe._action)
 
-        for location in OpenTranscribe._locations:
+        for location in OpenInTranscribe._locations:
             self._app.add_plugin_menu_item(location,
-                                           OpenTranscribe._action,
+                                           OpenInTranscribe._action,
                                            item)
 
     def do_deactivate(self):
         """Deactivate the plugin."""
         logging.debug('Deactivating plugin...')
 
-        for location in OpenTranscribe._locations:
+        for location in OpenInTranscribe._locations:
             self._app.remove_plugin_menu_item(location,
-                                              OpenTranscribe._action)
+                                              OpenInTranscribe._action)
